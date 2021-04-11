@@ -1,0 +1,13 @@
+- name: devops-lab
+  cpus: 1
+  memory: 3096
+  hostname: devops-lab
+  ip: 192.168.66.10
+  sistema: ubuntu/bionic64
+
+- name: mysql-lab
+  cpus: 1
+  memory: 3096
+  hostname: mysql-lab
+  ip: 192.168.66.20
+  sistema: ubuntu/bionic64
