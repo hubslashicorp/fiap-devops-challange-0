@@ -57,6 +57,18 @@ repositorio clonado localmente em sua maquina e execute os passos:
 $ git clone https://github.com/hubslashicorp/fiap-devops-challange-0.git
 ```
 
+## Estrutura do diretório:
+
+```
+.
+├── README.md
+├── Vagrantfile
+├── core
+│   └── machines.yml
+└── img
+    └── LogotipoSlashicorp.png
+```
+
 2.0 - Acesse o diretório local `fiap-devops-challange-0`:
 ``` 
 $ cd fiap-devops-challange-0
