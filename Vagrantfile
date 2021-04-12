@@ -1,9 +1,8 @@
-echo -- mode: ruby --
-echo vi: set ft=ruby :
+# -- mode: ruby --
+# vi: set ft=ruby :
 require 'yaml'
 yaml = YAML.load_file("core/machines.yml")
 
-echo ENV
 MYSQL_USER = "admdimdim"
 MYSQL_ROOT_PASSWORD = "s8u7r$?eropAvuv"
 MYSQL_PASSWORD = "@Fiap2tdst2021"
