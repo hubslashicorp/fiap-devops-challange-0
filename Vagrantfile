@@ -60,7 +60,7 @@ if [ $HOSTNAME = "mysql-lab" ]; then
 
 if [ $HOSTNAME = "devops-lab" ]; then
   echo 'ATUALIZANDO S.O'
-  sudo apt update -y && sudo apt upgrade -y
+  sudo apt update -y && sudo apt upgrade -y && sudo apt install wget -y
   echo 'BAIXANDO SCRIPT DE INSTALACAO DO DOCKER'
   curl -fsSL https://get.docker.com -o get-docker.sh
   echo 'EXECUTANDO SCRIPT DE INSTALACAO DOCKER'
