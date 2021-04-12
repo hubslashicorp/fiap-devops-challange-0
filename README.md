@@ -54,7 +54,7 @@ repositorio clonado localmente em sua maquina e execute os passos:
 
 1.0 - Realize o clone do repositorio:
 ```
-$ git clone https://github.com/hubslashicorp/treinamento-devops-part1.git
+$ git clone https://github.com/hubslashicorp/fiap-devops-challange-0.git
 ```
 
 2.0 - Acesse o diretório local `fiap-devops-challange-0`:
