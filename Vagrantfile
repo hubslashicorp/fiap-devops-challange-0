@@ -29,7 +29,7 @@ config.vm.provision "shell", inline: <<-SHELL
 
 if [ $HOSTNAME = "mysql-lab" ]; then
   echo 'ATUALIZANDO S.O'
-  sudo apt update -y && sudo apt upgrade -y
+  sudo apt update -y && sudo apt upgrade -y && sudo apt install wget -y
   echo 'BAIXANDO VERSAO DE MYSQL ESPECIFICADA NO PDF'
   wget -c https://dev.mysql.com/downloads/file/?id=500428
   echo 'INSTALANDO REPOSITORIO'
