@@ -1,9 +1,9 @@
-# -- mode: ruby --
-# vi: set ft=ruby :
+echo -- mode: ruby --
+echo vi: set ft=ruby :
 require 'yaml'
 yaml = YAML.load_file("core/machines.yml")
 
-# ENV
+echo ENV
 MYSQL_USER = "admdimdim"
 MYSQL_ROOT_PASSWORD = "s8u7r$?eropAvuv"
 MYSQL_PASSWORD = "@Fiap2tdst2021"
@@ -28,56 +28,56 @@ end
 config.vm.provision "shell", inline: <<-SHELL
 
 if [ $HOSTNAME = "mysql-lab" ]; then
-  # ATUALIZANDO S.O
+  echo 'ATUALIZANDO S.O'
   sudo apt update -y && sudo apt upgrade -y
-  # BAIXANDO VERSAO DE MYSQL ESPECIFICADA NO PDF
+  echo 'BAIXANDO VERSAO DE MYSQL ESPECIFICADA NO PDF'
   wget -c https://dev.mysql.com/downloads/file/?id=500428
-  # INSTALANDO REPOSITORIO
+  echo 'INSTALANDO REPOSITORIO'
   sudo dpkg -i mysql-apt-config_0.8.16-1_all.deb
-  # BAIXANDO ATUALIZACOES PARA REPOSITORIOS
+  echo 'BAIXANDO ATUALIZACOES PARA REPOSITORIOS'
   sudo apt-get update
-  # INSTALANDO PACOTE DO MYSQL-SERVER
+  echo 'INSTALANDO PACOTE DO MYSQL-SERVER'
   sudo apt-get install mysql-server -y
   sleep 5
-  # INICIANDO MYSQL-SERVER
+  echo 'INICIANDO MYSQL-SERVER'
   sudo systemctl start mysql
-  # SETANDO MYSQL PARA INICIAR JUNTO COM O S.O
+  echo 'SETANDO MYSQL PARA INICIAR JUNTO COM O S.O'
   sudo systemctl enable mysql
-  # CONFIGURAÇÕES INICIAIS DO MYSQL INLINE, ALTERANDO SENHA DO ROOT
+  echo 'CONFIGURAÇÕES INICIAIS DO MYSQL INLINE, ALTERANDO SENHA DO ROOT'
   sudo mysql -e "UPDATE mysql.user SET Password = PASSWORD('$MYSQL_ROOT_PASSWORD') WHERE User = 'root'"
-  # REMOVENDO ACESSO DO USUARIO ANONIMO CRIADO
+  echo 'REMOVENDO ACESSO DO USUARIO ANONIMO CRIADO'
   sudo mysql -e "DROP USER ''@'localhost'"
-  # REMOVENDO USUARIO DEFAULT
+  echo 'REMOVENDO USUARIO DEFAULT'
   sudo mysql -e "DROP USER ''@'$(hostname)'"
-  # REMOVENDO DATABASE TEST
+  echo 'REMOVENDO DATABASE TEST'
   sudo mysql -e "DROP DATABASE test"
-  # LIMPANDO PREVILEGIOS DEFAULT
+  echo 'LIMPANDO PREVILEGIOS DEFAULT'
   sudo mysql -e "FLUSH PRIVILEGES"
-  # CRIANDO DATABASE
+  echo 'CRIANDO DATABASE'
   sudo mysql -e "CREATE DATABASE $MYSQL_DATABASE"
-  # PERMISSIONANDO USUARIO NA DATABASE
+  echo 'PERMISSIONANDO USUARIO NA DATABASE'
   sudo mysql -e "GRANT ALL PRIVILEGES ON $MYSQL_DATABASE.* TO '$MYSQL_USER'@'localhost' IDENTIFIED BY '$MYSQL_PASSWORD'"
 
 if [ $HOSTNAME = "devops-lab" ]; then
-  # ATUALIZANDO S.O
+  echo 'ATUALIZANDO S.O'
   sudo apt update -y && sudo apt upgrade -y
-  # BAIXANDO SCRIPT DE INSTALACAO DO DOCKER
+  echo 'BAIXANDO SCRIPT DE INSTALACAO DO DOCKER'
   curl -fsSL https://get.docker.com -o get-docker.sh
-  # EXECUTANDO SCRIPT DE INSTALACAO DOCKER
+  echo 'EXECUTANDO SCRIPT DE INSTALACAO DOCKER'
   sudo sh get-docker.sh
-  # DANDO PREVILEGIOS AO GRUPO DOCKER PARA USUARIO VAGRANT
+  echo 'DANDO PREVILEGIOS AO GRUPO DOCKER PARA USUARIO VAGRANT'
   sudo usermod -a -G docker vagrant
-  # INICIANDO DOCKER
+  echo 'INICIANDO DOCKER'
   sudo systemctl start docker
-  # SETANDO DOCKER PARA INICIAR JUNTO COM O S.O
+  echo 'SETANDO DOCKER PARA INICIAR JUNTO COM O S.O'
   sudo systemctl enable docker
-  # EXECUTANDO CONTAINER DE WORDPRESS
+  echo 'EXECUTANDO CONTAINER DE WORDPRESS'
   docker run --env MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD \
              --env MYSQL_DATABASE=$MYSQL_DATABASE \
              --env MYSQL_USER=$MYSQL_USER \
              --env MYSQL_PASSWORD=$MYSQL_PASSWORD \
              -it --name wordpress -p 8080:80 wordpress
-  # EXECUTANDO CONTAINER DE PHPMYADMIN
+  echo 'EXECUTANDO CONTAINER DE PHPMYADMIN'
   docker run --env PMA_HOST=$PMA_HOST \
              --env PMA_ARBITRARY=$PMA_ARBITRARY \
              -it --name phpmyadmin -p 8081:80 phpmyadmin
