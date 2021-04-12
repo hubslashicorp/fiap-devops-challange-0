@@ -77,3 +77,7 @@ $ vagrant status
 $ vagrant halt
 ```
 
+6.0 - Destruindo a VM (`opcional`):
+```
+$ vagrant destroy
+```
