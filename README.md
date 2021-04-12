@@ -77,5 +77,3 @@ $ vagrant status
 $ vagrant halt
 ```
 
-## Entendendo os manifestos Vagrant
-
