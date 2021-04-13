@@ -79,17 +79,22 @@ $ cd fiap-devops-challange-0
 $ vagrant up
 ```
 
-4.0 - Validando se VM esta Online:
+4.0 - Acessando a VM com Vagrant ssh:
+``` 
+$ vagrant ssh <vm-nome>
+```
+
+5.0 - Validando se VM esta Online:
 ``` 
 $ vagrant status
 ```
 
-5.0 - Desligando VM (`opcional`):
+6.0 - Desligando VM (`opcional`):
 ```
 $ vagrant halt
 ```
 
-6.0 - Destruindo a VM (`opcional`):
+7.0 - Destruindo a VM (`opcional`):
 ```
 $ vagrant destroy
 ```
